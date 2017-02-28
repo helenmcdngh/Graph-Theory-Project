@@ -1,2 +1,2 @@
-# Graph-Theory-Project
+# Graph Theory Project
 3rd year project
