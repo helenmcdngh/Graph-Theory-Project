@@ -1,6 +1,5 @@
-# Graph Theory Project 
----------------------------------------------------------------------
-** Author: Helen McDonagh    G00320304      3rd year Project
+# Graph Theory Project
+> Author: Helen McDonagh    G00320304      3rd year Project
 
 # Project Requirements
 ---------------------------------------------------------------------
