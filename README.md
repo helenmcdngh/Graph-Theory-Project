@@ -2,15 +2,12 @@
 > Author: Helen McDonagh    G00320304      3rd year Project
 
 # Project Requirements
----------------------------------------------------------------------
 You are required to design and prototype a Neo4j database for use in a timetabling system for a third level institute like GMIT to be delivered on the 23rd of April 2017. The database should store information about student groups, classrooms, lecturers, and work hours – just like the currently used timetabling system at GMIT.
 
 # Intro
----------------------------------------------------------------------
 All companies, businesses, colleges and universities use a timetabling system all around the world. It tells you where, what job/task a person is carrying out and how long they are spending on that task. A lot of timetabling systems are flawed but the original GMIT timetable is very simple to read, it uses axes in its graph with time on the top axis and days on the side axis. A well designed and well laid out timetable prevents confusion and waste of time spent on it, particularly in colleges where there is so many factors like students and lecturers and rooms to consider as well. 
 
 # Neo4j
----------------------------------------------------------------------
 First, neo4j is one of the best graph database management systems in the software market. It is written in Java and has an easy syntax to learn also it was developed by Neo Technology. Co-founders Emil, Johan, Peter started building the first Neo4j prototype back in 2000 later finished developed the first ever version of Neo4j in 2002. Walmart, Cisco, Swiss, LinkedIn, HP, AWOL and up to 500 more companies use neo4j’s graph database management systems. Neo4j graph database has 5 main building blocks and they are the following:
 
 | Features | Description  | 
@@ -42,7 +39,10 @@ Neo4j CQL functions, here are some of the most frequently ones used:
 | Aggregation      | These take multiple values as arguments, and calculate and return an aggregated value from them. Avg() collect(), count(), max(), min() and sum() are some examples | 
 | Mathematical | These all operate on numerical expressions only and will return an error if used on any other values. Examples of mathematical functions: abs(), ceil(), floor(), rand(), round() sign() | 
 
+# Installing Neo4j
+Firstly you must go to [Node.js](http://www.neo4j.org/download) and download the "For Individuals Download Community Edition", then go to your downloads folder and click on the executable file and run it. 
+Follow the instructions throught the installation program, once it has installed click on the Desktop shortcut to run it.
+Then you start the server and it will tell you when its ready. http://localhost:7474/browser/ 
 
 # Database Design
----------------------------------------------------------------------
-I have chosen to create a timetabling system for my course Computing in Software Development from 1st year to 3rd year. Which will include all the lecturers, students, student groups, modules, time and day they are on. 
+I have chosen to create a timetabling system for my course Computing in Software Development for 3rd year. Which will include all the lecturers, students, student groups, modules, time and day they are on. 
