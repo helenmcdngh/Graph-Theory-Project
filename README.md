@@ -1,11 +1,8 @@
 # Graph Theory Project
-> Author: Helen McDonagh    G00320304      3rd year Project
+> Author: Helen McDonagh      3rd year Project
 
 # Project Requirements
-You are required to design and prototype a Neo4j database for use in a timetabling system for a third level institute like GMIT to be delivered on the 23rd of April 2017. The database should store information about student groups, classrooms, lecturers, and work hours – just like the currently used timetabling system at GMIT.
-
-# Intro
-All companies, businesses, colleges and universities use a timetabling system all around the world. It tells you where, what job/task a person is carrying out and how long they are spending on that task. A lot of timetabling systems are flawed but the original GMIT timetable is very simple to read, it uses axes in its graph with time on the top axis and days on the side axis. A well designed and well laid out timetable prevents confusion and waste of time spent on it, particularly in colleges where there is so many factors like students and lecturers and rooms to consider as well. 
+You are required to design and prototype a Neo4j database for use in a timetabling system for a third level institute like GMIT to be delivered on the 23rd of April 2017. The database should store information about student groups, classrooms, lecturers, and work hours – just like the currently used timetabling system at GMIT. 
 
 # Neo4j
 First, neo4j is one of the best graph database management systems in the software market. It is written in Java and has an easy syntax to learn also it was developed by Neo Technology. Co-founders Emil, Johan, Peter started building the first Neo4j prototype back in 2000 later finished developed the first ever version of Neo4j in 2002. Walmart, Cisco, Swiss, LinkedIn, HP, AWOL and up to 500 more companies use neo4j’s graph database management systems. Neo4j graph database has 5 main building blocks and they are the following:
