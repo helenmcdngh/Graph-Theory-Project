@@ -1,0 +1,271 @@
+--creating course nodes
+create (s:SoftwareDev {name:'Software Development'}) return s
+
+--creating module nodes
+create (m1:Module {name:'Software Testing'}),(m2:Module {name:'Database Management'}),(m3:Module{name: 'Graph Theory'}),(m4:Module {name:'Server Side Rad'}),(m5:Module {name: 'Mobile Application Development 2'}),(m6:Module {name: 'Professional Practice in IT'}) return m1,m2,m3,m4,m5,m6
+
+--relationships
+--connecting all modules to the course nodes
+Match(s:SoftwareDev {name:'Software Development'}), (m1:Module {name:'Software Testing'}) create (s)-[r:Module_of]->(m1)
+Match(s:SoftwareDev {name:'Software Development'}), (m2:Module {name:'Database Management'}) create (s)-[r:Module_of]->(m2)
+Match(s:SoftwareDev {name:'Software Development'}), (m3:Module {name:'Graph Theory'}) create (s)-[r:Module_of]->(m3)
+Match(s:SoftwareDev {name:'Software Development'}), (m4:Module {name:'Server Side Rad'}) create (s)-[r:Module_of]->(m4)
+Match(s:SoftwareDev {name:'Software Development'}), (m5:Module {name:'Mobile Application Development 2'}) create (s)-[r:Module_of]->(m5)
+Match(s:SoftwareDev {name:'Software Development'}), (m6:Module {name:'Professional Practice in IT'}) create (s)-[r:Module_of]->(m6)
+
+--view all nodes
+--:play query template
+match (n) return n
+
+--create lecturer nodes
+create (lect1:Lecturer {name: 'Ian McLoughlin'}),(lect2:Lecturer {name: 'Martin Hynes'}),(lect3:Lecturer {name: 'Deirdre O Donovan'}),(lect4:Lecturer {name: 'Gerard Harrison'}),(lect5:Lecturer {name: 'Damien Costello'}) return lect1,lect2,lect3,lect4,lect5
+
+--Relationships
+--connecting all lecturers to module nodes
+Match(lect2:Lecturer {name: 'Martin Hynes'}), (m1:Module {name:'Software Testing'}) create (lect2)-[r:Teaches]->(m1)
+Match(lect3:Lecturer {name: 'Deirdre O Donovan'}), (m2:Module {name:'Database Management'}) create (lect3)-[r:Teaches]->(m2)
+Match(lect1:Lecturer {name: 'Ian McLoughlin'}), (m3:Module {name:'Graph Theory'}) create (lect1)-[r:Teaches]->(m3)
+Match(lect4:Lecturer {name: 'Gerard Harrison'}), (m4:Module {name:'Server Side Rad'}) create (lect4)-[r:Teaches]->(m4)
+Match(lect5:Lecturer {name: 'Damien Costello'}), (m5:Module {name:'Mobile Application Development 2'}) create (lect5)-[r:Teaches]->(m5)
+Match(lect5:Lecturer {name: 'Damien Costello'}), (m6:Module {name:'Professional Practice in IT'}) create (lect5)-[r:Teaches]->(m6)
+
+--year
+create(y:Year {name:'Year 3'}),(gA:Group {name:'Group A'}),(gB:Group {name:'Group B'}), (gC:Group {name:'Group C'})
+
+--relationships
+--connecting group to years
+match(gA:Group {name:'Group A'}),(y:Year {name:'Year 3'}) create (y)-[r:YEAR_OF]->(gA)
+match(gB:Group {name:'Group B'}),(y:Year {name:'Year 3'}) create (y)-[r:YEAR_OF]->(gB)
+match(gC:Group {name:'Group C'}),(y:Year {name:'Year 3'}) create (y)-[r:YEAR_OF]->(gC)
+
+
+--creating room nodes
+create(Rm1:Room {name:'994'}),(Rm2:Room {name:'223'}), (Rm3:Room {name:'PF05'}),(Rm4:Room {name:'481'}),(Rm5:Room {name:'436'}),(Rm6:Room {name:'482'}),(Rm7:Room {name:'470'}),(Rm8:Room {name:'379'}),(Rm9:Room {name:'162'}),(Rm10:Room {name:'938'}),(Rm11:Room {name:'208'}),(Rm12:Room {name:'997'}),(Rm13:Room {name:'939'}),(Rm14:Room {name:'995'}),(Rm15:Room {name:'PF18'})
+
+
+--creating days
+Create(Mon:Day {name:'Monday'}),(Tues:Day {name:'Tuesday'}),(Wed:Day {name:'Wednesday'}),(Thurs:Day {name:'Thursday'}),(Fri:Day {name:'Friday'})
+
+--creating hours, i created individual hour nodes for every day
+
+create(Monh1:MonHrs{name:'10am'}),(Monh2:MonHrs{name:'12pm'}),(Monh3:MonHrs{name:'2pm'}),(Monh4:MonHrs{name:'4pm'})
+--relationships connecting the individual hours to the day
+match(Mon:Day {name:'Monday'}),(Monh1:MonHrs {name:'10am'}) create (Mon)-[r:time]->(Monh1)
+match(Mon:Day {name:'Monday'}),(Monh2:MonHrs {name:'12pm'}) create (Mon)-[r:time]->(Monh2)
+match(Mon:Day {name:'Monday'}),(Monh3:MonHrs {name:'2pm'}) create (Mon)-[r:time]->(Monh3)
+match(Mon:Day {name:'Monday'}),(Monh4:MonHrs {name:'4pm'}) create (Mon)-[r:time]->(Monh4)
+
+--Tuesday
+create(Tuesh1:TuesHrs{name:'9am'}),(Tuesh2:TuesHrs{name:'11am'}),(Tuesh3:TuesHrs{name:'12pm'}),(Tuesh4:TuesHrs{name:'2pm'}),(Tuesh5:TuesHrs{name:'4pm'})
+--relationship
+match(Tues:Day {name:'Tuesday'}),(Tuesh1:TuesHrs {name:'9am'}) create (Tues)-[r:time]->(Tuesh1)
+match(Tues:Day {name:'Tuesday'}),(Tuesh2:TuesHrs {name:'11am'}) create (Tues)-[r:time]->(Tuesh2)
+match(Tues:Day {name:'Tuesday'}),(Tuesh3:TuesHrs {name:'12pm'}) create (Tues)-[r:time]->(Tuesh3)
+match(Tues:Day {name:'Tuesday'}),(Tuesh4:TuesHrs {name:'2pm'}) create (Tues)-[r:time]->(Tuesh4)
+match(Tues:Day {name:'Tuesday'}),(Tuesh5:TuesHrs {name:'4pm'}) create (Tues)-[r:time]->(Tuesh5)
+
+--wednesday
+create(Wedh1:WedHrs{name:'9am'}),(Wedh2:WedHrs{name:'10am'}),(Wedh3:WedHrs{name:'11am'}),(Wedh4:WedHrs{name:'1pm'}),(Wedh5:WedHrs{name:'3pm'}),(Wedh6:WedHrs{name:'4pm'})
+--relationships
+match(Wed:Day {name:'Wednesday'}),(Wedh1:WedHrs {name:'9am'}) create (Wed)-[r:time]->(Wedh1)
+match(Wed:Day {name:'Wednesday'}),(Wedh2:WedHrs {name:'10am'}) create (Wed)-[r:time]->(Wedh2)
+match(Wed:Day {name:'Wednesday'}),(Wedh3:WedHrs {name:'11am'}) create (Wed)-[r:time]->(Wedh3)
+match(Wed:Day {name:'Wednesday'}),(Wedh4:WedHrs {name:'1pm'}) create (Wed)-[r:time]->(Wedh4)
+match(Wed:Day {name:'Wednesday'}),(Wedh5:WedHrs {name:'3pm'}) create (Wed)-[r:time]->(Wedh5)
+match(Wed:Day {name:'Wednesday'}),(Wedh6:WedHrs {name:'4pm'}) create (Wed)-[r:time]->(Wedh6)
+
+--Thursday
+create(Thursh1:ThursHrs{name:'9am'}),(Thursh2:ThursHrs{name:'11am'}),(Thursh3:ThursHrs{name:'2pm'})
+--relationships
+match(Thurs:Day {name:'Thursday'}),(Thursh1:ThursHrs {name:'9am'}) create (Thurs)-[r:time]->(Thursh1)
+match(Thurs:Day {name:'Thursday'}),(Thursh2:ThursHrs {name:'11am'}) create (Thurs)-[r:time]->(Thursh2)
+match(Thurs:Day {name:'Thursday'}),(Thursh3:ThursHrs {name:'2pm'}) create (Thurs)-[r:time]->(Thursh3)
+
+--Friday
+create(Frih1:FriHrs{name:'9am'}),(Frih2:FriHrs{name:'11am'})
+--relationships
+match(Fri:Day {name:'Friday'}),(Frih1:FriHrs {name:'9am'}) create (Fri)-[r:time]->(Frih1)
+match(Fri:Day {name:'Friday'}),(Frih2:FriHrs {name:'11am'}) create (Fri)-[r:time]->(Frih2)
+
+
+--Monday Classes
+
+-- DBMS lecture 10am
+create(DLec:Class {name:'DBMS Lecture'})
+match(DLec:Class {name:'DBMS Lecture'}),(Monh1:MonHrs {name:'10am'}) create (DLec)-[r:begins_at]->(Monh1)
+match(m2:Module {name:'Database Management'}),(DLec:Class {name:'DBMS Lecture'}) create (m2)-[r:taught]->(DLec)
+match(Rm1:Room {name:'994'}),(DLec:Class {name:'DBMS Lecture'}) create (Rm1)-[r:room]->(DLec)
+match(y:Year {name:'Year 3'}),(DLec:Class {name:'DBMS Lecture'}) create (y)-[r:students_attending]->(DLec)
+
+
+-- Mobile Apps lecture 12pm
+create(MobLec:Class {name:'Mobile Apps Lecture'})
+match(MobLec:Class {name:'Mobile Apps Lecture'}),(Monh2:MonHrs {name:'12pm'}) create (MobLec)-[r:begins_at]->(Monh2)
+match(m5:Module {name:'Mobile Application Development 2'}),(MobLec:Class {name:'Mobile Apps Lecture'}) create (m5)-[r:taught]->(MobLec)
+match(Rm2:Room {name:'223'}),(MobLec:Class {name:'Mobile Apps Lecture'}) create (Rm2)-[r:room]->(MobLec)
+match(y:Year {name:'Year 3'}),(MobLec:Class {name:'Mobile Apps Lecture'}) create (y)-[r:students_attending]->(MobLec)
+
+--Graph Theory lab 2pm
+create(GrTLab:Class {name:'Graph T.'})
+match(GrTLab:Class {name:'Graph T.'}), (Monh3:MonHrs {name:'2pm'}) create (GrTLab)-[r:begins_at]->(Monh3)
+match(m3:Module {name:'Graph Theory'}),(GrTLab:Class {name:'Graph T.'}) create (m3)-[r:taught]->(GrTLab)
+match(Rm3:Room {name:'PF05'}),(GrTLab:Class {name:'Graph T.'}) create (Rm3)-[r:room]->(GrTLab)
+match(gA:Group {name:'Group A'}),(GrTLab:Class {name:'Graph T.'}) create (gA)-[r:students_attending]->(GrTLab)
+
+--software testing lab 4pm
+create(SoftLab:Class {name:'Software T.'})
+match(SoftLab:Class {name:'Software T.'}), (Monh4:MonHrs {name:'4pm'}) create (SoftLab)-[r:begins_at]->(Monh4)
+match(m1:Module {name:'Software Testing'}),(SoftLab:Class {name:'Software T.'}) create (m1)-[r:taught]->(SoftLab)
+match(Rm4:Room {name:'481'}),(SoftLab:Class {name:'Software T.'}) create (Rm4)-[r:room]->(SoftLab)
+match(gA:Group {name:'Group A'}),(SoftLab:Class {name:'Software T.'}) create (gA)-[r:students_attending]->(SoftLab)
+
+--Server Side rad lab 4pm C
+create(SSRLab:Class {name:'S.S Rad'})
+match(SSRLab:Class {name:'S.S Rad'}), (Monh4:MonHrs {name:'4pm'}) create (SSRLab)-[r:begins_at]->(Monh4)
+match(m4:Module {name:'Server Side Rad'}),(SSRLab:Class {name:'S.S Rad'}) create (m4)-[r:taught]->(SSRLab)
+match(Rm5:Room {name:'436'}),(SSRLab:Class {name:'S.S Rad'}) create (Rm5)-[r:room]->(SSRLab)
+match(gC:Group {name:'Group C'}),(SSRLab:Class {name:'S.S Rad'}) create (gC)-[r:students_attending]->(SSRLab)
+
+
+-- Tuesday Classes 
+create(SoftLab2:Class {name:'Software T. labs'})
+match(SoftLab2:Class {name:'Software T. labs'}), (Tuesh1:TuesHrs {name:'9am'}) create (SoftLab2)-[r:begins_at]->(Tuesh1)
+match(m1:Module {name:'Software Testing'}),(SoftLab2:Class {name:'Software T. labs'}) create (m1)-[r:taught]->(SoftLab2)
+match(Rm5:Room {name:'436'}),(SoftLab2:Class {name:'Software T. labs'}) create (Rm5)-[r:room]->(SoftLab2)
+match(gC:Group {name:'Group C'}),(SoftLab2:Class {name:'Software T. labs'}) create (gC)-[r:students_attending]->(SoftLab2)
+
+create(DBMSLab:Class {name:'DBMS lab'})
+match(DBMSLab:Class {name:'DBMS lab'}), (Tuesh1:TuesHrs {name:'9am'}) create (DBMSLab)-[r:begins_at]->(Tuesh1)
+match(m2:Module {name:'Database Management'}),(DBMSLab:Class {name:'DBMS lab'}) create (m2)-[r:taught]->(DBMSLab)
+match(Rm4:Room {name:'481'}),(DBMSLab:Class {name:'DBMS lab'}) create (Rm4)-[r:room]->(DBMSLab)
+match(gA:Group {name:'Group A'}),(DBMSLab:Class {name:'DBMS lab'}) create (gA)-[r:students_attending]->(DBMSLab)
+
+create(DBMSLab2:Class {name:'DBMS lab 2'})
+match(DBMSLab2:Class {name:'DBMS lab 2'}), (Tuesh2:TuesHrs {name:'11am'}) create (DBMSLab2)-[r:begins_at]->(Tuesh2)
+match(m2:Module {name:'Database Management'}),(DBMSLab2:Class {name:'DBMS lab 2'}) create (m2)-[r:taught]->(DBMSLab2)
+match(Rm6:Room {name:'482'}),(DBMSLab2:Class {name:'DBMS lab 2'}) create (Rm6)-[r:room]->(DBMSLab2)
+match(gC:Group {name:'Group C'}),(DBMSLab2:Class {name:'DBMS lab 2'}) create (gC)-[r:students_attending]->(DBMSLab2)
+
+create(MobLab:Class {name:'Mob App lab'})
+match(MobLab:Class {name:'Mob App lab'}), (Tuesh2:TuesHrs {name:'11am'}) create (MobLab)-[r:begins_at]->(Tuesh2)
+match(m5:Module {name: 'Mobile Application Development 2'}),(MobLab:Class {name:'Mob App lab'}) create (m5)-[r:taught]->(MobLab)
+match(Rm7:Room {name:'470'}),(MobLab:Class {name:'Mob App lab'}) create (Rm7)-[r:room]->(MobLab)
+match(gA:Group {name:'Group A'}),(MobLab:Class {name:'Mob App lab'}) create (gA)-[r:students_attending]->(MobLab)
+
+create(GrTLab2:Class {name:'Graph T. lab'})
+match(GrTLab2:Class {name:'Graph T. lab'}), (Tuesh3:TuesHrs {name:'12pm'}) create (GrTLab2)-[r:begins_at]->(Tuesh3)
+match(m3:Module{name: 'Graph Theory'}),(GrTLab2:Class {name:'Graph T. lab'}) create (m3)-[r:taught]->(GrTLab2)
+match(Rm8:Room {name:'379'}),(GrTLab2:Class {name:'Graph T. lab'}) create (Rm8)-[r:room]->(GrTLab2)
+match(gB:Group {name:'Group B'}),(GrTLab2:Class {name:'Graph T. lab'}) create (gB)-[r:students_attending]->(GrTLab2)
+
+create(SoftLab3:Class {name:'Software T. lab'})
+match(SoftLab3:Class {name:'Software T. lab'}), (Tuesh4:TuesHrs {name:'2pm'}) create (SoftLab3)-[r:begins_at]->(Tuesh4)
+match(m1:Module {name:'Software Testing'}),(SoftLab3:Class {name:'Software T. lab'}) create (m1)-[r:taught]->(SoftLab3)
+match(Rm5:Room {name:'436'}),(SoftLab3:Class {name:'Software T. lab'}) create (Rm5)-[r:room]->(SoftLab3)
+match(gB:Group {name:'Group B'}),(SoftLab3:Class {name:'Software T. lab'}) create (gB)-[r:students_attending]->(SoftLab3)
+
+create(SSRLab1:Class {name:'S.S Rad lab'})
+match(SSRLab1:Class {name:'S.S Rad lab'}), (Tuesh5:TuesHrs {name:'4pm'}) create (SSRLab1)-[r:begins_at]->(Tuesh5)
+match(m4:Module {name:'Server Side Rad'}),(SSRLab1:Class {name:'S.S Rad lab'}) create (m4)-[r:taught]->(SSRLab1)
+match(Rm5:Room {name:'436'}),(SSRLab1:Class {name:'S.S Rad lab'}) create (Rm5)-[r:room]->(SSRLab1)
+match(gB:Group {name:'Group B'}),(SSRLab1:Class {name:'S.S Rad lab'}) create (gB)-[r:students_attending]->(SSRLab1)
+
+-- Wednesday Classes 
+
+create(GrTLab3:Class {name:'Graph Theory labs'})
+match(GrTLab3:Class {name:'Graph Theory labs'}), (Wedh1:WedHrs {name:'9am'}) create (GrTLab3)-[r:begins_at]->(Wedh1)
+match(m3:Module{name: 'Graph Theory'}),(GrTLab3:Class {name:'Graph Theory labs'}) create (m3)-[r:taught]->(GrTLab3)
+match(Rm9:Room {name:'162'}),(GrTLab3:Class {name:'Graph Theory labs'}) create (Rm9)-[r:room]->(GrTLab3)
+match(gC:Group {name:'Group C'}),(GrTLab3:Class {name:'Graph Theory labs'}) create (gC)-[r:students_attending]->(GrTLab3)
+
+create(GrTLec:Class {name:'Graph T. Lecture'})
+match(GrTLec:Class {name:'Graph T. Lecture'}), (Wedh2:WedHrs {name:'10am'}) create (GrTLec)-[r:begins_at]->(Wedh2)
+match(m3:Module{name: 'Graph Theory'}),(GrTLec:Class {name:'Graph T. Lecture'}) create (m3)-[r:taught]->(GrTLec)
+match(Rm10:Room {name:'938'}),(GrTLec:Class {name:'Graph T. Lecture'}) create (Rm10)-[r:room]->(GrTLec)
+match(y:Year {name:'Year 3'}),(GrTLec:Class {name:'Graph T. Lecture'}) create (y)-[r:students_attending]->(GrTLec)
+
+create(PPITLec:Class {name:'Pro. IT Lecture'})
+match(PPITLec:Class {name:'Pro. IT Lecture'}), (Wedh3:WedHrs {name:'11am'}) create (PPITLec)-[r:begins_at]->(Wedh3)
+match(m6:Module {name: 'Professional Practice in IT'}),(PPITLec:Class {name:'Pro. IT Lecture'}) create (m6)-[r:taught]->(PPITLec)
+match(Rm11:Room {name:'208'}),(PPITLec:Class {name:'Pro. IT Lecture'}) create (Rm11)-[r:room]->(PPITLec)
+match(y:Year {name:'Year 3'}),(PPITLec:Class {name:'Pro. IT Lecture'}) create (y)-[r:students_attending]->(PPITLec)
+
+create(SSRLec:Class {name:'S.S Rad Lecture'})
+match(SSRLec:Class {name:'S.S Rad Lecture'}), (Wedh4:WedHrs {name:'1pm'}) create (SSRLec)-[r:begins_at]->(Wedh4)
+match(m4:Module {name:'Server Side Rad'}),(SSRLec:Class {name:'S.S Rad Lecture'}) create (m4)-[r:taught]->(SSRLec)
+match(Rm12:Room {name:'997'}),(SSRLec:Class {name:'S.S Rad Lecture'}) create (Rm12)-[r:room]->(SSRLec)
+match(y:Year {name:'Year 3'}),(SSRLec:Class {name:'S.S Rad Lecture'}) create (y)-[r:students_attending]->(SSRLec)
+
+create(SoftLec:Class {name:'Software T. Lecture'})
+match(SoftLec:Class {name:'Software T. Lecture'}), (Wedh5:WedHrs {name:'3pm'}) create (SoftLec)-[r:begins_at]->(Wedh5)
+match(m1:Module {name:'Software Testing'}),(SoftLec:Class {name:'Software T. Lecture'}) create (m1)-[r:taught]->(SoftLec)
+match(Rm13:Room {name:'939'}),(SoftLec:Class {name:'Software T. Lecture'}) create (Rm13)-[r:room]->(SoftLec)
+match(y:Year {name:'Year 3'}),(SoftLec:Class {name:'Software T. Lecture'}) create (y)-[r:students_attending]->(SoftLec)
+
+create(DLec2:Class {name:'DBMS Lecture 2'})
+match(DLec2:Class {name:'DBMS Lecture 2'}), (Wedh6:WedHrs {name:'4pm'}) create (DLec2)-[r:begins_at]->(Wedh6)
+match(m2:Module {name:'Database Management'}),(DLec2:Class {name:'DBMS Lecture 2'}) create (m2)-[r:taught]->(DLec2)
+match(Rm14:Room {name:'995'}),(DLec2:Class {name:'DBMS Lecture 2'}) create (Rm14)-[r:room]->(DLec2)
+match(y:Year {name:'Year 3'}),(DLec2:Class {name:'DBMS Lecture 2'}) create (y)-[r:students_attending]->(DLec2)
+
+-- Thursday Classes
+
+create(MobLab2:Class {name:'Mob App labs'})
+match(MobLab2:Class {name:'Mob App labs'}), (Thursh1:ThursHrs {name:'9am'}) create (MobLab2)-[r:begins_at]->(Thursh1)
+match(m5:Module {name:'Mobile Application Development 2'}),(MobLab2:Class {name:'Mob App labs'}) create (m5)-[r:taught]->(MobLab2)
+match(Rm15:Room {name:'PF18'}),(MobLab2:Class {name:'Mob App labs'}) create (Rm15)-[r:room]->(MobLab2)
+match(gB:Group {name:'Group B'}),(MobLab2:Class {name:'Mob App labs'}) create (gB)-[r:students_attending]->(MobLab2)
+
+create(MobLab3:Class {name:'Mobile App lab'})
+match(MobLab3:Class {name:'Mobile App lab'}), (Thursh2:ThursHrs {name:'11am'}) create (MobLab3)-[r:begins_at]->(Thursh2)
+match(m5:Module {name:'Mobile Application Development 2'}),(MobLab3:Class {name:'Mobile App lab'}) create (m5)-[r:taught]->(MobLab3)
+match(Rm15:Room {name:'PF18'}),(MobLab3:Class {name:'Mobile App lab'}) create (Rm15)-[r:room]->(MobLab3)
+match(gC:Group {name:'Group C'}),(MobLab3:Class {name:'Mobile App lab'}) create (gC)-[r:students_attending]->(MobLab3)
+
+create(SSRLab2:Class {name:'S.S Rad labs'})
+match(SSRLab2:Class {name:'S.S Rad labs'}), (Thursh3:ThursHrs {name:'2pm'}) create (SSRLab2)-[r:begins_at]->(Thursh3)
+match(m4:Module {name:'Server Side Rad'}),(SSRLab2:Class {name:'S.S Rad labs'}) create (m4)-[r:taught]->(SSRLab2)
+match(Rm5:Room {name:'436'}),(SSRLab2:Class {name:'S.S Rad labs'}) create (Rm5)-[r:room]->(SSRLab2)
+match(gA:Group {name:'Group A'}),(SSRLab2:Class {name:'S.S Rad labs'}) create (gA)-[r:students_attending]->(SSRLab2)
+
+-- Friday Classes
+
+create(DBMSLab3:Class {name:'DBMS lab 3'})
+match(DBMSLab3:Class {name:'DBMS lab 3'}), (Frih1:FriHrs {name:'9am'}) create (DBMSLab3)-[r:begins_at]->(Frih1)
+match(m2:Module {name:'Database Management'}),(DBMSLab3:Class {name:'DBMS lab 3'}) create (m2)-[r:taught]->(DBMSLab3)
+match(Rm6:Room {name:'482'}),(DBMSLab3:Class {name:'DBMS lab 3'}) create (Rm6)-[r:room]->(DBMSLab3)
+match(gB:Group {name:'Group B'}),(DBMSLab3:Class {name:'DBMS lab 3'}) create (gB)-[r:students_attending]->(DBMSLab3)
+
+create(GrTLec2:Class {name:'Graph Theory Lecture'})
+match(GrTLec2:Class {name:'Graph Theory Lecture'}), (Frih2:FriHrs {name:'11am'}) create (GrTLec2)-[r:begins_at]->(Frih2)
+match(m3:Module {name:'Graph Theory'}),(GrTLec2:Class {name:'Graph Theory Lecture'}) create (m3)-[r:taught]->(GrTLec2)
+match(Rm11:Room {name:'208'}),(GrTLec2:Class {name:'Graph Theory Lecture'}) create (Rm11)-[r:room]->(GrTLec2)
+match(y:Year {name:'Year 3'}),(GrTLec2:Class {name:'Graph Theory Lecture'}) create (y)-[r:students_attending]->(GrTLec2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
