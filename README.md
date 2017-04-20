@@ -42,43 +42,55 @@ Follow the instructions throught the installation program, once it has installed
 Then you start the server and it will tell you when its ready. http://localhost:7474/browser/ 
 
 # Database Design
-I have decided to create a graph timetabling system for the 2nd semster my 3rd year course, Software Development in GMIT. 
-I created individual nodes for all the following:
+I have decided to create a graph timetabling system for the 2nd semster my 3rd year course, Software Development in GMIT. GMIT's original timetable system is quiet easy to read, it gives you the day and time, room, course, module, lecturer and group of what is in a semster week. My Prototype contains the following nodes and relationships connecting all of the nodes together. There is a Svg file called graphDiagram.svg above that contains a full image of an organized version of my graph database.
 
 ## Modules, Course and Lecturers
 ```sh
-create (m1:Module {name:'Software Testing'}),(m2:Module {name:'Database Management'}),(m3:Module{name: 'Graph Theory'}),(m4:Module {name:'Server Side Rad'}),(m5:Module {name: 'Mobile Application Development 2'}),(m6:Module {name: 'Professional Practice in IT'}) return m1,m2,m3,m4,m5,m6
-
 create (s:SoftwareDev {name:'Software Development'}) return s
 
+create (m1:Module {name:'Software Testing'}),(m2:Module {name:'Database Management'}),(m3:Module{name: 'Graph Theory'}),(m4:Module {name:'Server Side Rad'}),(m5:Module {name: 'Mobile Application Development 2'}),(m6:Module {name: 'Professional Practice in IT'}) return m1,m2,m3,m4,m5,m6
+
+Match(s:SoftwareDev {name:'Software Development'}), (m1:Module {name:'Software Testing'}) create (s)-[r:Module_of]->(m1)
+
 create (lect1:Lecturer {name: 'Ian McLoughlin'}),(lect2:Lecturer {name: 'Martin Hynes'}),(lect3:Lecturer {name: 'Deirdre O Donovan'}),(lect4:Lecturer {name: 'Gerard Harrison'}),(lect5:Lecturer {name: 'Damien Costello'}) return lect1,lect2,lect3,lect4,lect5
+
+Match(lect2:Lecturer {name: 'Martin Hynes'}), (m1:Module {name:'Software Testing'}) create (lect2)-[r:Teaches]->(m1)
 ```
+![database2](https://cloud.githubusercontent.com/assets/15608152/25253737/181cb8da-261a-11e7-9f3d-6ca7c3800440.png)
+
 ## Year and Groups
 ```sh
 create(y:Year {name:'Year 3'}),(gA:Group {name:'Group A'}),(gB:Group {name:'Group B'}), (gC:Group {name:'Group C'})
+
+match(gA:Group {name:'Group A'}),(y:Year {name:'Year 3'}) create (y)-[r:YEAR_OF]->(gA)
 ```
+![database3](https://cloud.githubusercontent.com/assets/15608152/25253739/182c6500-261a-11e7-9c39-fecf15840c45.png)
+
 ## Rooms
 ```sh
 create(Rm1:Room {name:'994'}),(Rm2:Room {name:'223'}), (Rm3:Room {name:'PF05'}),(Rm4:Room {name:'481'}),(Rm5:Room {name:'436'}),(Rm6:Room {name:'482'}),(Rm7:Room {name:'470'}),(Rm8:Room {name:'379'}),(Rm9:Room {name:'162'}),(Rm10:Room {name:'938'}),(Rm11:Room {name:'208'}),(Rm12:Room {name:'997'}),(Rm13:Room {name:'939'}),(Rm14:Room {name:'995'}),(Rm15:Room {name:'PF18'})
 ```
+![database4](https://cloud.githubusercontent.com/assets/15608152/25253738/182a9572-261a-11e7-808f-2ca7075fb247.png)
+
 ## Days, Individual hours, classes
 ```sh
 Create(Mon:Day {name:'Monday'}),(Tues:Day {name:'Tuesday'}),(Wed:Day {name:'Wednesday'}),(Thurs:Day {name:'Thursday'}),(Fri:Day {name:'Friday'})
 
 create(Monh1:MonHrs{name:'10am'}),(Monh2:MonHrs{name:'12pm'}),(Monh3:MonHrs{name:'2pm'}),(Monh4:MonHrs{name:'4pm'})
 
+match(Mon:Day {name:'Monday'}),(Monh1:MonHrs {name:'10am'}) create (Mon)-[r:time]->(Monh1)
+
 create(DLec:Class {name:'DBMS Lecture'})
+match(DLec:Class {name:'DBMS Lecture'}),(Monh1:MonHrs {name:'10am'}) create (DLec)-[r:begins_at]->(Monh1)
+match(m2:Module {name:'Database Management'}),(DLec:Class {name:'DBMS Lecture'}) create (m2)-[r:taught]->(DLec)
+match(Rm1:Room {name:'994'}),(DLec:Class {name:'DBMS Lecture'}) create (Rm1)-[r:room]->(DLec)
+match(y:Year {name:'Year 3'}),(DLec:Class {name:'DBMS Lecture'}) create (y)-[r:students_attending]->(DLec)
 ```
-
-![database2](https://cloud.githubusercontent.com/assets/15608152/25253737/181cb8da-261a-11e7-9f3d-6ca7c3800440.png)
-
-![database3](https://cloud.githubusercontent.com/assets/15608152/25253739/182c6500-261a-11e7-9c39-fecf15840c45.png)
-
-![database4](https://cloud.githubusercontent.com/assets/15608152/25253738/182a9572-261a-11e7-808f-2ca7075fb247.png)
-
 ![database5](https://cloud.githubusercontent.com/assets/15608152/25253740/18326e8c-261a-11e7-957d-5a3d685c8eb7.png)
-
 ![database](https://cloud.githubusercontent.com/assets/15608152/25253736/17fe2104-261a-11e7-9f98-be6ce315aed7.png)
+
+
+
 # References
 1. https://neo4j.com/developer/get-started/
 2. https://neo4j.com/developer/cypher/
