@@ -38,15 +38,16 @@ Neo4j CQL functions, here are some of the most frequently ones used:
 
 ## Installing Neo4j
 Firstly you must go to [Node.js](http://www.neo4j.org/download) and download the "For Individuals Download Community Edition", then go to your downloads folder and click on the executable file and run it. 
-Follow the instructions throught the installation program, once it has installed click on the Desktop shortcut to run it.
-Then you start the server and it will tell you when its ready. http://localhost:7474/browser/ 
+Follow the instructions through the installation program, once it has installed click on the Desktop shortcut to run it.
+Then you start the server and it will tell you when its ready.
+ http://localhost:7474/browser/ 
 
 ## Database Design and Structure
 I had planned creating a timetable for the whole year of third year, I found that it was very hard to read due to the number of nodes and relationships I opted for the second semester only. It seemed to be better choice for building this graph database. The structure has a year containing three groups called group A, B and C, the course has six modules Graph Theory, Software Testing, Server Side Rad, Database Management, Professional Practice in IT and Mobile applications development 2 and they are all taught by lectures in a room teaching a lab or lecture at a certain time of the day.
 
 With the above idea for a structure, I extracted the data that I need from the GMIT website and the timetabling website. I organised all the data into a document and sorted them into a list. After some trial and error with creating nodes, labels, relationships and properties, I began to create all the nodes I needed. I ended up with 79 nodes once I finished, then I created relationships between them, only connecting them to the most relevant nodes and labelled them. I recorded all my queries in a text file just encase I destroyed the database, which I did numerous times. This text file is called commands for neo4j.txt and it is attached to my GitHub repository.
 
-My Prototype contains the following nodes and relationships connecting all of the nodes together. I created a svg file with neo4j that has a clear image of my graph and it is attached to my GitHub repository.
+My Prototype contains the following nodes and relationships connecting all the nodes together. I created a svg file with neo4j that has a clear image of my graph and it is attached to my GitHub repository.
 
 #### Modules, Course and Lecturers
 Here are some of the queries I used to create the course, module and lecturer nodes and how I created the relationships between them
@@ -80,7 +81,7 @@ create(Rm1:Room {name:'994'}),(Rm2:Room {name:'223'}), (Rm3:Room {name:'PF05'}),
 ![database4](https://cloud.githubusercontent.com/assets/15608152/25253738/182a9572-261a-11e7-808f-2ca7075fb247.png)
 
 #### Days, Individual hours, classes
-Here are some of the queries I used to create the Day nodes, I created individual hour nodes for everyday. I then connected them to the day assigned a certain class to attend 10am on Monday
+Here are some of the queries I used to create the Day nodes, I created individual hour nodes for every day. I then connected them to the day assigned a certain class to attend 10am on Monday
 ```sh
 Create(Mon:Day {name:'Monday'}),(Tues:Day {name:'Tuesday'}),(Wed:Day {name:'Wednesday'}),(Thurs:Day {name:'Thursday'}),(Fri:Day {name:'Friday'})
 
@@ -98,6 +99,7 @@ match(y:Year {name:'Year 3'}),(DLec:Class {name:'DBMS Lecture'}) create (y)-[r:s
 ![database](https://cloud.githubusercontent.com/assets/15608152/25253736/17fe2104-261a-11e7-9f98-be6ce315aed7.png)
 
 ## Conclusion
+I found it difficult at the beginning trying to connect all the nodes because instead of connecting it to the node I wanted to, I would create a new node and end up having two relationships instead of just one. I have learned a lot from this project, I would like to have continued with it even more. I liked the neo4j cypher language and would like to expand on it more. I would like to have added more to this project.
 
 ## References
 1. https://neo4j.com/developer/get-started/
