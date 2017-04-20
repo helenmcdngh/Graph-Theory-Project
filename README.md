@@ -44,7 +44,7 @@ Then you start the server and it will tell you when its ready. http://localhost:
 # Database Design
 I have decided to create a graph timetabling system for the 2nd semster my 3rd year course, Software Development in GMIT. GMIT's original timetable system is quiet easy to read, it gives you the day and time, room, course, module, lecturer and group of what is in a semster week. My Prototype contains the following nodes and relationships connecting all of the nodes together. There is a Svg file called graphDiagram.svg above that contains a full image of an organized version of my graph database.
 
-## Modules, Course and Lecturers
+#### Modules, Course and Lecturers
 ```sh
 create (s:SoftwareDev {name:'Software Development'}) return s
 
@@ -58,7 +58,7 @@ Match(lect2:Lecturer {name: 'Martin Hynes'}), (m1:Module {name:'Software Testing
 ```
 ![database2](https://cloud.githubusercontent.com/assets/15608152/25253737/181cb8da-261a-11e7-9f3d-6ca7c3800440.png)
 
-## Year and Groups
+#### Year and Groups
 ```sh
 create(y:Year {name:'Year 3'}),(gA:Group {name:'Group A'}),(gB:Group {name:'Group B'}), (gC:Group {name:'Group C'})
 
@@ -66,13 +66,13 @@ match(gA:Group {name:'Group A'}),(y:Year {name:'Year 3'}) create (y)-[r:YEAR_OF]
 ```
 ![database3](https://cloud.githubusercontent.com/assets/15608152/25253739/182c6500-261a-11e7-9c39-fecf15840c45.png)
 
-## Rooms
+#### Rooms
 ```sh
 create(Rm1:Room {name:'994'}),(Rm2:Room {name:'223'}), (Rm3:Room {name:'PF05'}),(Rm4:Room {name:'481'}),(Rm5:Room {name:'436'}),(Rm6:Room {name:'482'}),(Rm7:Room {name:'470'}),(Rm8:Room {name:'379'}),(Rm9:Room {name:'162'}),(Rm10:Room {name:'938'}),(Rm11:Room {name:'208'}),(Rm12:Room {name:'997'}),(Rm13:Room {name:'939'}),(Rm14:Room {name:'995'}),(Rm15:Room {name:'PF18'})
 ```
 ![database4](https://cloud.githubusercontent.com/assets/15608152/25253738/182a9572-261a-11e7-808f-2ca7075fb247.png)
 
-## Days, Individual hours, classes
+#### Days, Individual hours, classes
 ```sh
 Create(Mon:Day {name:'Monday'}),(Tues:Day {name:'Tuesday'}),(Wed:Day {name:'Wednesday'}),(Thurs:Day {name:'Thursday'}),(Fri:Day {name:'Friday'})
 
@@ -95,3 +95,4 @@ match(y:Year {name:'Year 3'}),(DLec:Class {name:'DBMS Lecture'}) create (y)-[r:s
 1. https://neo4j.com/developer/get-started/
 2. https://neo4j.com/developer/cypher/
 3. https://www.tutorialspoint.com/neo4j/index.htm
+4. http://dillinger.io/
