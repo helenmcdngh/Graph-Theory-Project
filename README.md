@@ -1,5 +1,5 @@
 # Graph Theory Project
-> Author: Helen McDonagh      3rd year Project
+**Author: Helen McDonagh      3rd year Project** 
 
 ## Project Requirements
 You are required to design and prototype a Neo4j database for use in a timetabling system for a third level institute like GMIT to be delivered on the 23rd of April 2017. The database should store information about student groups, classrooms, lecturers, and work hours – just like the currently used timetabling system at GMIT. 
