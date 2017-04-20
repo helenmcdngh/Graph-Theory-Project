@@ -42,4 +42,17 @@ Follow the instructions throught the installation program, once it has installed
 Then you start the server and it will tell you when its ready. http://localhost:7474/browser/ 
 
 # Database Design
-I have chosen to create a timetabling system for my course Computing in Software Development for 3rd year. Which will include all the lecturers, students, student groups, modules, time and day they are on. 
+I have decided to create a graph timetabling system for the 2nd semster my 3rd year course, Software Development in GMIT. I created individual nodes for all the following:
++ Modules
++ Lecturers
++ Year
++ Groups 
++ Classes
++ Days and individual hours for each day
++ Course
++ Rooms
+
+# References
+1. https://neo4j.com/developer/get-started/
+2. https://neo4j.com/developer/cypher/
+3. https://www.tutorialspoint.com/neo4j/index.htm
