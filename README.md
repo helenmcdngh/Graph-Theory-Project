@@ -94,6 +94,9 @@ match(DLec:Class {name:'DBMS Lecture'}),(Monh1:MonHrs {name:'10am'}) create (DLe
 match(m2:Module {name:'Database Management'}),(DLec:Class {name:'DBMS Lecture'}) create (m2)-[r:taught]->(DLec)
 match(Rm1:Room {name:'994'}),(DLec:Class {name:'DBMS Lecture'}) create (Rm1)-[r:room]->(DLec)
 match(y:Year {name:'Year 3'}),(DLec:Class {name:'DBMS Lecture'}) create (y)-[r:students_attending]->(DLec)
+
+Match(Day {name:'Monday'}),(Monh1:MonHrs {name:'10am'}),(DLec:Class{name:'DBMS Lecture'}), (Rm1:Room {name:'994'}),(y:Year {name:'Year 3'}),(m2:Module {name:'Database Management'}) return *
+
 ```
 ![database5](https://cloud.githubusercontent.com/assets/15608152/25253740/18326e8c-261a-11e7-957d-5a3d685c8eb7.png)
 ![database](https://cloud.githubusercontent.com/assets/15608152/25253736/17fe2104-261a-11e7-9f98-be6ce315aed7.png)
