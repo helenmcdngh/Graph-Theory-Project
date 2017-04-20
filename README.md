@@ -41,8 +41,10 @@ Firstly you must go to [Node.js](http://www.neo4j.org/download) and download the
 Follow the instructions throught the installation program, once it has installed click on the Desktop shortcut to run it.
 Then you start the server and it will tell you when its ready. http://localhost:7474/browser/ 
 
-# Database Design
-I have decided to create a graph timetabling system for the 2nd semster my 3rd year course, Software Development in GMIT. GMIT's original timetable system is quiet easy to read, it gives you the day and time, room, course, module, lecturer and group of what is in a semster week. My Prototype contains the following nodes and relationships connecting all of the nodes together. There is a Svg file called graphDiagram.svg above that contains a full image of an organized version of my graph database.
+# Database Design and Structure
+I had planned creating a timetable for the whole year of third year, I found that it was very hard to read due to the number of nodes and relationships I opted for the second semester only. It seemed to be better choice for building this graph database. The structure has a year containing three groups called group A, B and C, the course has six modules Graph Theory, Software Testing, Server Side Rad, Database Management, Professional Practice in IT and Mobile applications development 2 and they are all taught by lectures in a room teaching a lab or lecture at a certain time of the day.
+With the above idea for a structure, I extracted the data that I need from the GMIT website and the timetabling website. I organised all the data into a document and sorted them into a list. After some trial and error with creating nodes, labels, relationships and properties, I began to create all the nodes I needed. I ended up with 79 nodes once I finished, then I created relationships between them, only connecting them to the most relevant nodes and labelled them. I recorded all my queries in a text file just encase I destroyed the database, which I did numerous times. This text file is called commands for neo4j.txt and it is attached to my GitHub repository.
+My Prototype contains the following nodes and relationships connecting all of the nodes together. I created a svg file with neo4j that has a clear image of my graph and it is attached to my GitHub repository.
 
 #### Modules, Course and Lecturers
 ```sh
